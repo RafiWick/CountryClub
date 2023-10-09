@@ -26,6 +26,10 @@ namespace CountryClubAPI.Controllers
         public ActionResult SingleMember(int memberId)
         {
             var member = _context.Members.FirstOrDefault(m => m.Id == memberId);
+            if (member == null)
+            {
+                return NotFound();
+            }
             return new JsonResult(member);
         }
         [HttpPost]
